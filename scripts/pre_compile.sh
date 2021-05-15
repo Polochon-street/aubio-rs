@@ -11,7 +11,7 @@ workdir=$PWD
 rm -rf $workdir/prebuilt
 mkdir -p $workdir/prebuilt
 
-cd $workdir/aubio-sys
+cd $workdir/bliss-audio-aubio-sys
 #cargo clean
 
 for target in $targets; do
@@ -28,7 +28,7 @@ cd $workdir
 
 for target in $targets; do
     for profile in debug release; do
-        cd target/$target/$profile/build/aubio-sys-*/out/aubio-src/build/src
+        cd target/$target/$profile/build/bliss-audio-aubio-sys-*/out/aubio-src/build/src
         tar -czf $workdir/prebuilt/libaubio_${target}_${profile}.tar.gz libaubio.{a,so}
         cd $workdir
     done

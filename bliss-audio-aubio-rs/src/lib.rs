@@ -43,7 +43,7 @@
  * To force build and link builtin version you can use __builtin__ feature.
  */
 
-pub(crate) use aubio_sys as ffi;
+pub(crate) use bliss_audio_aubio_sys as ffi;
 
 mod fft;
 mod filterbank;

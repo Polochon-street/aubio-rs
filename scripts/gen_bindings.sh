@@ -1,7 +1,7 @@
 #!/bin/sh
 
 name=aubio
-crate=aubio-sys
+crate=bliss-audio-aubio-sys
 #targets="arm-unknown-linux-gnueabi aarch64-unknown-linux-gnu i686-unknown-linux-gnu x86_64-unknown-linux-gnu mips-unknown-linux-gnu mips64-unknown-linux-gnuabi64 powerpc-unknown-linux-gnu powerpc64-unknown-linux-gnu sparc64-unknown-linux-gnu wasm32-unknown-unknown"
 # blacklisted: sparc-unknown-linux-gnu
 

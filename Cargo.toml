@@ -1,7 +1,7 @@
 [workspace]
 members = [
-  "aubio-sys",
-  "aubio-rs",
+  "bliss-audio-aubio-sys",
+  "bliss-audio-aubio-rs",
 ]
 
 [profile.release]

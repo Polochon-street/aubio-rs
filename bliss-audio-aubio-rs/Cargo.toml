@@ -1,0 +1,41 @@
+[package]
+name = "bliss-audio-aubio-rs"
+version = "0.2.0"
+description = "aubio-rs for bliss' internal use"
+categories = ["external-ffi-bindings", "multimedia::audio"]
+keywords = ["aubio", "audio", "processing", "recognition", "ffi"]
+authors = ["K. <kayo@illumium.org>"]
+license = "GPL-3.0"
+readme = "README.md"
+repository = "https://github.com/Polochon-street/aubio-rs"
+edition = "2018"
+
+[dependencies.bliss-audio-aubio-sys]
+version = "0.2.0"
+path = "../bliss-audio-aubio-sys"
+
+[dependencies.log]
+version = "0.4"
+optional = true
+
+[dev-dependencies.hound]
+version = "3.4"
+
+[features]
+default = []
+bindgen = ["bliss-audio-aubio-sys/bindgen"]
+builtin = ["bliss-audio-aubio-sys/builtin"]
+pkg-config = ["bliss-audio-aubio-sys/pkg-config"]
+shared = ["bliss-audio-aubio-sys/shared"]
+static = ["bliss-audio-aubio-sys/static"]
+fftw3 = ["bliss-audio-aubio-sys/fftw3"]
+intelipp = ["bliss-audio-aubio-sys/intelipp"]
+double = ["bliss-audio-aubio-sys/double"]
+accelerate = ["bliss-audio-aubio-sys/accelerate"]
+blas = ["bliss-audio-aubio-sys/blas"]
+atlas = ["bliss-audio-aubio-sys/atlas"]
+rustdoc = ["bliss-audio-aubio-sys/rustdoc"]
+check-size = []
+
+[package.metadata.docs.rs]
+features = ["rustdoc"]
