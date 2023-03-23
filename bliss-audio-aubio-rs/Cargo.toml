@@ -1,6 +1,6 @@
 [package]
 name = "bliss-audio-aubio-rs"
-version = "0.2.0"
+version = "0.2.1"
 description = "aubio-rs for bliss' internal use"
 categories = ["external-ffi-bindings", "multimedia::audio"]
 keywords = ["aubio", "audio", "processing", "recognition", "ffi"]
@@ -11,7 +11,7 @@ repository = "https://github.com/Polochon-street/aubio-rs"
 edition = "2018"
 
 [dependencies.bliss-audio-aubio-sys]
-version = "0.2.0"
+version = "0.2.1"
 path = "../bliss-audio-aubio-sys"
 
 [dependencies.log]

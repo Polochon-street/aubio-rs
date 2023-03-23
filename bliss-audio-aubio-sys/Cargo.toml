@@ -1,6 +1,6 @@
 [package]
 name = "bliss-audio-aubio-sys"
-version = "0.2.0"
+version = "0.2.1"
 description = "audio-rs for bliss' internal use"
 categories = ["external-ffi-bindings", "multimedia::audio"]
 keywords = ["aubio", "audio", "processing", "recognition", "ffi"]
@@ -24,7 +24,7 @@ version = "1.0.67"
 features = ["parallel"]
 
 [build-dependencies.bindgen]
-version = "0.58"
+version = "0.64"
 optional = true
 
 [features]
