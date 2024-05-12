@@ -119,6 +119,7 @@ where
  * Only one logger supported at a time.
  * You should keep logger from dropping while it used.
  */
+#[allow(dead_code)]
 pub struct Log(Box<dyn Logger>);
 
 impl Drop for Log {

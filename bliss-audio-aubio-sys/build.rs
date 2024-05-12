@@ -284,9 +284,9 @@ fn build_library(src_dir: &Path, lib_dir: &Path) {
     let _target_env = env::var("CARGO_CFG_TARGET_ENV").unwrap();
 
     build.out_dir(lib_dir);
-    build.flag_if_supported("-std=c99");
 
     build.define("HAVE_MEMCPY_HACKS", None);
+    build.flag_if_supported("-w");
 
     if _target_env == "msvc" {
         build.define("HAVE_WIN_HACKS", None);
