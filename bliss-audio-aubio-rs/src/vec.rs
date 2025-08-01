@@ -359,6 +359,7 @@ impl<'a, X> FMat<'a, X> {
         })
     }
 
+    #[allow(clippy::mut_from_ref)]
     pub fn get_vec(&self) -> Vec<&mut [Smpl]> {
         let mut vec = Vec::with_capacity(self.height());
         let mut ptr = self.fmat.data;

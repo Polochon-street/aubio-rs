@@ -39,7 +39,7 @@ pub enum LogLevel {
 impl LogLevel {
     fn from_ffi(level: ffi::aubio_log_level) -> Option<Self> {
         if level < ffi::aubio_log_level_AUBIO_LOG_LAST_LEVEL {
-            Some(unsafe { core::mem::transmute(level) })
+            Some(unsafe { core::mem::transmute::<u32, LogLevel>(level) })
         } else {
             None
         }
@@ -154,6 +154,7 @@ fn with_global_logger(func: impl FnOnce(&mut Option<Log>)) {
     static ONCE: Once = Once::new();
     static mut LOG: *mut Arc<Mutex<Option<Log>>> = null_mut();
 
+    #[allow(clippy::arc_with_non_send_sync)]
     ONCE.call_once(|| unsafe {
         LOG = Box::into_raw(Box::new(Arc::new(Mutex::new(None))));
     });

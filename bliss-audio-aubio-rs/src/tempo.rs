@@ -122,8 +122,8 @@ impl Tempo {
     where
         I: Into<FVec<'i>>,
     {
-        let mut output = [0.; 1];
-        self.do_(input, &mut output)?;
+        let output = [0.; 1];
+        self.do_(input, output)?;
         Ok(output[0])
     }
 

@@ -12,7 +12,7 @@ use std::{
 /**
  * Pitch detection method
  */
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Default)]
 pub enum PitchMode {
     /**
      * Schmitt trigger
@@ -72,15 +72,10 @@ pub enum PitchMode {
      *
      * Paul Brossier, Automatic annotation of musical audio for interactive systems, Chapter 3, Pitch Analysis, PhD thesis, Centre for Digital music, Queen Mary University of London, London, UK, 2006.
      */
+    #[default]
     Yinfft,
 
     Specacf,
-}
-
-impl Default for PitchMode {
-    fn default() -> Self {
-        PitchMode::Yinfft
-    }
 }
 
 impl AsNativeStr for PitchMode {
@@ -133,11 +128,12 @@ impl FromStr for PitchMode {
 /**
  * Pitch output unit
  */
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Default)]
 pub enum PitchUnit {
     /**
      * Hertz
      */
+    #[default]
     Hz,
 
     /**
@@ -154,12 +150,6 @@ pub enum PitchUnit {
      * Bin
      */
     Bin,
-}
-
-impl Default for PitchUnit {
-    fn default() -> Self {
-        PitchUnit::Hz
-    }
 }
 
 impl AsNativeStr for PitchUnit {
@@ -309,8 +299,8 @@ impl Pitch {
     where
         I: Into<FVec<'i>>,
     {
-        let mut output = [0.; 1];
-        self.do_(input, &mut output)?;
+        let output = [0.; 1];
+        self.do_(input, output)?;
         Ok(output[0])
     }
 

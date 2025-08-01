@@ -12,7 +12,7 @@ use std::{
 /**
  * Onset detection function
  */
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Default)]
 pub enum OnsetMode {
     /**
      * Energy based onset detection function
@@ -28,6 +28,7 @@ pub enum OnsetMode {
      *
      * Paul Masri. Computer modeling of Sound for Transformation and Synthesis of Musical Signal. PhD dissertation, University of Bristol, UK, 1996.
      */
+    #[default]
     Hfc,
 
     /**
@@ -99,12 +100,6 @@ impl AsNativeStr for OnsetMode {
             SpecFlux => "specflux\0",
             SpecDiff => "specdiff\0",
         }
-    }
-}
-
-impl Default for OnsetMode {
-    fn default() -> Self {
-        OnsetMode::Hfc
     }
 }
 
@@ -305,8 +300,8 @@ impl Onset {
     where
         I: Into<FVec<'i>>,
     {
-        let mut onset = [0.; 1];
-        self.do_(input, &mut onset)?;
+        let onset = [0.; 1];
+        self.do_(input, onset)?;
         Ok(onset[0])
     }
 

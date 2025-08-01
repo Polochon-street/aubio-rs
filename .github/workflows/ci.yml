@@ -11,7 +11,7 @@ jobs:
   format:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: true
       - name: Setup Rust
@@ -352,7 +352,7 @@ jobs:
           args: --manifest-path aubio-sys/Cargo.toml --target ${{ matrix.target }} --features update-bindings
       - name: Upload bindings
         if: matrix.task == 'bindings'
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: bindings
           path: |
@@ -384,7 +384,7 @@ jobs:
         with:
           submodules: true
       - name: Download bindings
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: bindings
       - name: Create pull request

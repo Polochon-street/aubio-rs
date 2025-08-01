@@ -12,20 +12,15 @@ use std::{
 /**
  * Resampling method
  */
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Default)]
 #[repr(u32)]
 pub enum ResampleMode {
+    #[default]
     BestQuality = 0,
     MediumQuality = 1,
     Fastest = 2,
     OrderHold = 3,
     Linear = 4,
-}
-
-impl Default for ResampleMode {
-    fn default() -> Self {
-        ResampleMode::BestQuality
-    }
 }
 
 impl AsRef<str> for ResampleMode {
