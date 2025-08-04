@@ -29,7 +29,7 @@ fn main() {
         let bindings_file = bindings_filename(cfg!(feature = "double"));
 
         if bindings_filepath(&bindings_file).as_ref().is_file() {
-            println!("cargo:rustc-env=AUBIO_BINDINGS={}", bindings_file);
+            println!("cargo:rustc-env=AUBIO_BINDINGS={bindings_file}");
         } else {
             panic!("No prebuilt bindings. Try use `bindgen` feature.",);
         }
@@ -77,7 +77,9 @@ fn generate_bindings<P: AsRef<Path>>(
     out_file: impl AsRef<Path>,
     double: bool,
 ) {
-    let bindings = bindgen::Builder::default()
+    use std::env;
+
+    let mut bindings = bindgen::Builder::default()
         .detect_include_paths(true)
         .clang_args(
             inc_dirs
@@ -85,9 +87,13 @@ fn generate_bindings<P: AsRef<Path>>(
                 .map(|dir| format!("-I{}", dir.as_ref().display())),
         )
         .clang_arg(if double { "-DHAVE_AUBIO_DOUBLE" } else { "" })
-        .header_contents("library.h", "#include <aubio.h>")
-        .generate()
-        .expect("Generated bindings.");
+        .header_contents("library.h", "#include <aubio.h>");
+
+    if env::var("CARGO_CFG_TARGET_ARCH").unwrap().contains("wasm") {
+        bindings = bindings.clang_arg("-fvisibility=default")
+    }
+
+    let bindings = bindings.generate().expect("Generated bindings.");
 
     bindings.write_to_file(out_file).expect("Written bindings.");
 }
